@@ -22,7 +22,7 @@ Built with React, TypeScript, Vite, Node.js (Express) and Zod. All sample docume
 Requires Node 20.12+.
 
 ```bash
-npm install
+npm ci
 npm run dev          # web: http://localhost:5173  (API on 127.0.0.1:8787)
 npm test             # 148 tests
 npm run build && npm start   # production: one server on http://127.0.0.1:8787
@@ -54,3 +54,13 @@ tests/    Vitest suites (schema, extractor, LLM client, server, draft/export, UI
 - Single invoice per document; negative amounts (credit notes) are rejected.
 - Rate limiting is in-memory and per-process; no authentication. Intended for local use, not public hosting.
 - **AI mode has not been verified against a successful real model call** — see `VERIFICATION.md`.
+
+## License and reuse
+
+Copyright © 2026 Gabriell Bedoy. All rights reserved.
+
+DocuLens is made available publicly for portfolio review and technical evaluation. No open-source license is granted for the original project code.
+
+Except as permitted by applicable law or platform terms, copying, modifying, redistributing, sublicensing, or commercially reusing the original project code requires prior permission from the copyright holder.
+
+Third-party dependencies and other third-party material retain their respective licenses. For licensing or reuse inquiries, contact the repository owner through GitHub.
