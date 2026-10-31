@@ -32,3 +32,21 @@ Test coverage by the three required categories: **valid** (schema, both extracto
 
 1. `parseMoney("12 34")` returned 1234 (whitespace glued into the number) — now rejected.
 2. Mobile page overflowed horizontally due to a visually-hidden table header label — fixed.
+
+## Independent local verification — 2026-10-31 (Ubuntu/WSL, Node.js 24.20.0)
+
+After transferring the packaged project to a separate Ubuntu/WSL workspace, the repository owner independently ran these checks against the local DocuLens copy:
+
+| Check | Observed result |
+|---|---|
+| `npm ci --ignore-scripts --no-audit --no-fund` | Installed 220 packages successfully |
+| `npm run typecheck` | Passed |
+| `npm test -- --run` | **148/148 tests passed**, across six test files |
+| `npm run build` | Passed; Vite production bundle generated |
+| Local development server | Web UI started at `http://localhost:5173/`; API reported listening on `127.0.0.1:8787` |
+| Browser demo | A bundled synthetic invoice produced an editable, schema-valid extraction with four line items, matching subtotal, tax, and total |
+| JSON export | Downloaded JSON was inspected and contained `schemaVersion: 1`, `extractionMode: "demo-rule-based"`, an empty warnings array, and the expected invoice fields |
+| `npm audit --omit=dev --audit-level=moderate` | Reported 0 vulnerabilities at the time of checking |
+| `npm audit --audit-level=moderate` | Reported 0 vulnerabilities at the time of checking, including development dependencies |
+
+The owner replaced two known synthetic key-like strings in test fixtures with neutral placeholders and then **reran the typecheck, all 148 tests, and production build**, all passing. These local results were confirmed from terminal output and browser screenshots/exported JSON. They do not imply a hosted CI run, independent security certification, automated browser-compatibility testing, or a successful real-model API call. The October 29 report above remains a separate historical verification record. AI mode is still **NOT verified** end to end.
